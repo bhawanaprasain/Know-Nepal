@@ -1,0 +1,35 @@
+body{
+    font-size: 20px;
+}
+
+#home{
+    display: grid;
+    margin: 5%;
+    grid-template-columns: 1fr;
+    align-items: center;
+    
+}
+ul li{
+    list-style: none;
+    height: 25px;
+    width: fit-content;
+    padding: 10px;
+    justify-content: center;
+    text-decoration: none;
+    border-radius: 5px;
+    color: white;
+}
+
+.auth{
+    display: grid;
+    gap:20px
+}
+
+.play button{
+    background-color: rgb(0, 162, 255);
+    padding: 5px;
+    width: fit-content;
+    border: none;
+    border-radius: 5px;
+    color: white;
+}

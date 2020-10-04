@@ -1,4 +1,4 @@
-*{
+/* *{
     font-size: 20px;
 }
 
@@ -97,4 +97,7 @@
     color: white;
     width: 20%;
     
+}
+*/ .btnrounded {
+    border-radius: 50% !important;
 }

@@ -1,9 +1,11 @@
 import React , {Component, Fragment} from "react"
 import questions from "../../questions"
-import isEmpty from "../../utils/isempty"
-import correctNotification from "../../assets/audio/correct-answer.mp3"
-import wrongNotification from "../../assets/audio/wrong-answer.mp3"
-import buttonSound from "../../assets/audio/button-sound.mp3"
+import isEmpty from "../../utils/isempty";
+
+import buttonSound from "../../assets/audios/button.wav";
+import correctNotification from "../../assets/audios/correct_answer.wav";
+import wrongNotification from "../../assets/audios/wrong_answer.wav";
+
 import "../../styles/play.css"
 
 class Play extends Component{
@@ -336,64 +338,87 @@ class Play extends Component{
 
     render(){
     const {currentQuestion, currentQuestionIndex, numberOfQuestions, hints, fiftyFifty, time} = this.state
-        return(
-            <div>
-                <Fragment>
-                    <audio id="correct-sound" src={correctNotification}></audio>
-                    <audio id="wrong-sound"  src={wrongNotification}></audio>
-                    <audio id="button-sound"  src={buttonSound}></audio>
+        return (
+          //   <div className="bg-light">
+          //     
+          //     <div className="questions">
+          //       <div className="lifeline-container">
+          //         <div className="left">
+          //           <div onClick={this.handleFiftyFifty}>
+          //             <button className="fiftybtn" style={{borderRadius: '50%'}}>Click for 50-50 </button>
+          //             <span>{fiftyFifty} remaining</span>
+          //           </div>
+          //           <div>
+          //             <span>
+          //               {currentQuestionIndex + 1} of {numberOfQuestions} answered
+          //             </span>
+          //           </div>
+          //         </div>
+          //         <div className="right">
+          //           <div onClick={this.handleHints}>
+          //             <button className="hintsbtn"> Click for hints </button>
+          //             <span> {hints} remaining </span>
+          //           </div>
+          //           <div>
+          //             Countdown: {time.minutes}:{time.seconds}
+          //           </div>
+          //         </div>
+          //       </div>
 
-                </Fragment>
-                <div className="questions">
-                    <div className="lifeline-container">
-                        <div className="left">
-                            <div onClick={this.handleFiftyFifty}>
-                               <button className="fiftybtn">Click for 50-50 </button>
-                               <span>{fiftyFifty} remaining</span>
-                            </div> 
-                            <div>
-                                <span>{currentQuestionIndex+1} of {numberOfQuestions} answered</span>
-                            </div>
-                            
-                        </div>
-                        <div className="right">
-                            <div onClick={this.handleHints}>
-                                <button className="hintsbtn"> Click for hints   </button>
-                               <span > {hints} remaining </span>
-                            </div> 
-                            <div>Countdown: {time.minutes}:{time.seconds}</div>
-                        </div>
-                    </div>
+          //       <div className="quiz-container">
+          //         <h1>{currentQuestion.question}</h1>
+          //         <div className="option-container">
+          //           <div className="top">
+          //             <button onClick={this.handleOptionClick} className="option">
+          //               {currentQuestion.optionA}
+          //             </button>
+          //             <button onClick={this.handleOptionClick} className="option">
+          //               {currentQuestion.optionB}
+          //             </button>
+          //           </div>
+          //           <div className="bottom">
+          //             <button onClick={this.handleOptionClick} className="option">
+          //               {currentQuestion.optionC}
+          //             </button>
+          //             <button onClick={this.handleOptionClick} className="option">
+          //               {currentQuestion.optionD}
+          //             </button>
+          //           </div>
+          //         </div>
+          //       </div>
 
-                   
-                    <div className="quiz-container"> 
-                        <h1>{currentQuestion.question}</h1>
-                        <div className="option-container">
-                            <div className="top">
-                                <button  onClick={this.handleOptionClick} className="option">{currentQuestion.optionA}</button>
-                                <button  onClick={this.handleOptionClick} className="option">{currentQuestion.optionB}</button>
-                            </div>
-                            <div className="bottom">
-                                <button  onClick={this.handleOptionClick} className="option">{currentQuestion.optionC}</button>
-                                <button  onClick={this.handleOptionClick} className="option">{currentQuestion.optionD}</button>
-                            </div>
-
-                        </div>
-                        
-                    </div>
-                
-                <div className="button-container">
-                        <button
-                        id="previous-button" onClick={this.handleButtonClick}>Previous</button>
-                        <button 
-                        id="next-button" onClick={this.handleButtonClick}>Next</button>
-                        <button id="quit-button" onClick={this.handleButtonClick}>Quit</button>
-
-
-                </div>
+          //       <div className="button-container">
+          //         <button id="previous-button" onClick={this.handleButtonClick}>
+          //           Previous
+          //         </button>
+          //         <button id="next-button" onClick={this.handleButtonClick}>
+          //           Next
+          //         </button>
+          //         <button id="quit-button" onClick={this.handleButtonClick}>
+          //           Quit
+          //         </button>
+          //       </div>
+          //     </div>
+          //   </div>
+          <div className="container bg-light">
+              <Fragment>
+                 <audio id="correct-sound" src={correctNotification}></audio>
+                 <audio id="wrong-sound" src={wrongNotification}></audio>
+                 <audio id="button-sound" src={buttonSound}></audio>
+              </Fragment>
+            <div className="row p-2">
+            <div className="col-md-4">
+                    <button className="btn btn-dark btnrounded">50-50</button>
+              </div>
+              <div className="col-md-4 text-center">
+                <p>{currentQuestionIndex + 1} of {numberOfQuestions} answered</p>
+              </div>
+              <div className="col-md-4 text-right">
+                    <button className="btn btn-dark btnrounded">Hints</button>
+              </div>
             </div>
-            </div>
-        )
+          </div>
+        );
     }
 }
 

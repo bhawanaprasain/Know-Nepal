@@ -50,22 +50,31 @@ componentDidMount(){
         }
 
         if(state !== undefined){
-            stats =(<div className="stats">
+            stats = (
+              <div className="stats bg-light boxshadow">
                 <h1>QUIZ HAS ENDED</h1>
                 <h4>{remark}</h4>
                 <p>Score:{this.state.score}</p>
                 <p>SumberOfQuestions:{this.state.numberOfQuestions}</p>
-                <p>NumberOfAnsweredQuestions:{this.state.numberOfAnsweredQuestions}</p>
+                <p>
+                  NumberOfAnsweredQuestions:
+                  {this.state.numberOfAnsweredQuestions}
+                </p>
                 <p>CorrectAnswers:{this.state.correctAnswers}</p>
                 <p>WrongAnswers:{this.state.wrongAnswers}</p>
                 <p>HintsUsed:{this.state.hintsUsed}</p>
                 <p>FiftyFiftyUsed:{this.state.fiftyFiftyUsed}</p>
 
                 <section className="nextround">
-                    <Link to="/"><button>Back to home</button></Link>
-                    <Link to="/play"><button>Play again</button></Link>
+                  <Link to="/">
+                    <button>Back to home</button>
+                  </Link>
+                  <Link to="/play">
+                    <button>Play again</button>
+                  </Link>
                 </section>
-            </div>)
+              </div>
+            );
         }
         else{
             stats =(<div>

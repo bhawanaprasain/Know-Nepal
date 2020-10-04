@@ -1,5 +1,8 @@
 .instructions{
-    margin: 10%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .instructions ul li{
@@ -17,10 +20,24 @@
 
 .optionbtns button{
     
-    background-color: rgb(0, 162, 255);
+    /* background-color: rgb(0, 162, 255); */
     padding: 5px;
     width: fit-content;
     border: none;
     border-radius: 5px;
     color: white;
+}
+@media(max-width: 500px) {
+    .textCenter {
+        text-align: center;
+    }
+
+    .instructions ul {
+        padding: 0;
+    }
+
+    .instructions h1 {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
 }

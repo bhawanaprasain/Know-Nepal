@@ -1,4 +1,4 @@
-body{
+/* body{
     font-size: 20px;
 }
 
@@ -32,4 +32,20 @@ ul li{
     border: none;
     border-radius: 5px;
     color: white;
+}
+
+*/
+
+/* added styles */
+.centered {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 100vh;
+}
+
+.boxshadow {
+    box-shadow: 1px 10px 40px 2px black;
 }

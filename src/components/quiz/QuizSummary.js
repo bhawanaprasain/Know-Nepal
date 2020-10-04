@@ -50,33 +50,42 @@ componentDidMount(){
         }
 
         if(state !== undefined){
-            stats =(<div className="stats">
+            stats = (
+              <div className="stats bg-light boxshadow text-center p-3">
                 <h1>QUIZ HAS ENDED</h1>
                 <h4>{remark}</h4>
-                <p>Score:{this.state.score}</p>
-                <p>SumberOfQuestions:{this.state.numberOfQuestions}</p>
-                <p>NumberOfAnsweredQuestions:{this.state.numberOfAnsweredQuestions}</p>
-                <p>CorrectAnswers:{this.state.correctAnswers}</p>
-                <p>WrongAnswers:{this.state.wrongAnswers}</p>
-                <p>HintsUsed:{this.state.hintsUsed}</p>
-                <p>FiftyFiftyUsed:{this.state.fiftyFiftyUsed}</p>
+                <p>Score :{this.state.score}</p>
+                <p>Total Questions :{this.state.numberOfQuestions}</p>
+                <p>
+                  Number Of Answered Questions :
+                  {this.state.numberOfAnsweredQuestions}
+                </p>
+                <p>Correct Answers :{this.state.correctAnswers}</p>
+                <p>Wrong Answers :{this.state.wrongAnswers}</p>
+                <p>Hints Used :{this.state.hintsUsed}</p>
+                <p>FiftyFifty Used :{this.state.fiftyFiftyUsed}</p>
 
                 <section className="nextround">
-                    <Link to="/"><button>Back to home</button></Link>
-                    <Link to="/play"><button>Play again</button></Link>
+                  <Link to="/">
+                    <button className="btn btn-dark m-2">Back to home</button>
+                  </Link>
+                  <Link to="/play">
+                    <button className="btn btn-dark m-2">Play again</button>
+                  </Link>
                 </section>
-            </div>)
+              </div>
+            );
         }
         else{
-            stats =(<div>
-
-                        <h1>No stats available please take quiz</h1>
-                        <section>
-                            <Link to="/">Back to home</Link>
-                            <Link to="/play">Play again</Link>
-                        </section>
-                    </div>
-                )
+            stats = (
+              <div className="stats bg-light">
+                <h1>No stats available please take quiz</h1>
+                <section>
+                  <Link to="/">Back to home</Link>
+                  <Link to="/play">Play again</Link>
+                </section>
+              </div>
+            );
         }
         return(
             <div>

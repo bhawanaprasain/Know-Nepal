@@ -6,7 +6,7 @@ const QuizInstructions =()=>{
 
     return (
       <div>
-        <div className="instructions bg-light p-3 textCenter boxshadow">
+        <div className="instructions bg-light p-3 text-center boxshadow">
           <h1>Read these instructions before playing quiz</h1>
           <ul>
             <li>You will have 30 seconds for quiz</li>

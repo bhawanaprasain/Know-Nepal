@@ -41,7 +41,7 @@ class Play extends Component{
         this.startTimer()
     }
 
-    componentWillUnmount(){
+    componentWillUnmount(){ 
         clearInterval(this.interval)
     }
     displayQuestions=(questions= this.state.questions, currentQuestion, nextQuestion,previousQuestion)=>{
@@ -266,30 +266,33 @@ class Play extends Component{
 
         const countDownTime = Date.now() +30000;
         this.interval = setInterval(() => {
-            const now = new Date();
-            const distance = countDownTime -now;
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-            if(distance <0){
-                clearInterval(this.interval)
-                this.setState({
-                    time:{
-                        minutes:0,
-                        seconds:0
-                    }
-                }, ()=>{
-                    this.endGame();
-                })
-            }
-            else{
-                this.setState({
-                    time:{
-                        minutes: minutes,
-                        seconds: seconds
-                    }
-                })
-            }
-            
+          const now = new Date();
+          const distance = countDownTime - now;
+          const minutes = Math.floor(
+            (distance % (1000 * 60 * 60)) / (1000 * 60)
+          );
+          const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+          if (distance < 0) {
+            clearInterval(this.interval);
+            this.setState(
+              {
+                time: {
+                  minutes: 0,
+                  seconds: 0,
+                },
+              },
+              () => {
+                this.endGame();
+              }
+            );
+          } else {
+            this.setState({
+              time: {
+                minutes: minutes,
+                seconds: seconds,
+              },
+            });
+          }
         }, 1000);
     }
 
@@ -338,9 +341,10 @@ class Play extends Component{
 
     render(){
     const {currentQuestion, currentQuestionIndex, numberOfQuestions, hints, fiftyFifty, time} = this.state
+    const secondsRadius = mapNumber(time.seconds, 30, 0, 0, 360);
         return (
           //   <div className="bg-light">
-          //     
+          //
           //     <div className="questions">
           //       <div className="lifeline-container">
           //         <div className="left">
@@ -400,26 +404,124 @@ class Play extends Component{
           //       </div>
           //     </div>
           //   </div>
-          <div className="container bg-light">
-              <Fragment>
-                 <audio id="correct-sound" src={correctNotification}></audio>
-                 <audio id="wrong-sound" src={wrongNotification}></audio>
-                 <audio id="button-sound" src={buttonSound}></audio>
-              </Fragment>
-            <div className="row p-2">
-            <div className="col-md-4">
-                    <button className="btn btn-dark btnrounded">50-50</button>
+          <div className="container bg-light p-3">
+            <Fragment>
+              <audio id="correct-sound" src={correctNotification}></audio>
+              <audio id="wrong-sound" src={wrongNotification}></audio>
+              <audio id="button-sound" src={buttonSound}></audio>
+            </Fragment>
+            <div>
+                <h1 style={{letterSpacing: '2px', textAlign: 'center', textTransform: 'uppercase'}}>Countdown</h1>
+                <div className="countdown-wrapper">  
+                        <div className="countdown-item">
+                            <SVGCircle radius={secondsRadius} />
+                            {time.seconds}
+                            <span>seconds</span>
+                        </div>
+                </div>
+            </div>
+            <div className="row text-center">
+              <div className="col-12">
+              <span>
+               {currentQuestionIndex + 1} of {numberOfQuestions} answered
+              </span>
+              <h1>{currentQuestion.question}</h1>
               </div>
-              <div className="col-md-4 text-center">
-                <p>{currentQuestionIndex + 1} of {numberOfQuestions} answered</p>
+              <div className="col-6 text-center">
+              <p onClick={this.handleOptionClick} className="option">{currentQuestion.optionA}</p>
               </div>
-              <div className="col-md-4 text-right">
-                    <button className="btn btn-dark btnrounded">Hints</button>
+              <div className="col-6 text-center">
+              <p onClick={this.handleOptionClick} className="option">{currentQuestion.optionB}</p>
+              </div>
+              <div className="col-6 text-center">
+              <p onClick={this.handleOptionClick} className="option">{currentQuestion.optionC}</p>
+              </div>
+              <div className="col-6 text-center">
+              <p onClick={this.handleOptionClick} className="option">{currentQuestion.optionD}</p>
+              </div>
+              <div className="col-12 d-flex justify-content-center">
+              <button id="previous-button" className="btn btn-dark" onClick={this.handleButtonClick}>
+               Previous
+             </button>
+              <button id="next-button" className="btn btn-dark ml-2" onClick={this.handleButtonClick}>
+                 Next
+                </button>
+                 <button id="quit-button" className="btn btn-dark ml-2" onClick={this.handleButtonClick}>
+                   Quit
+               </button>
+              </div>
+            </div>
+            <div className="row m-4">
+              <div className="col-12">
+                <hr style={{backgroundColor: '#2f3640'}}/>
+                <h3 className="text-center">LifeLines</h3>
+              </div>
+            </div>
+            <div className="row justify-content-center">
+            <div className="col-2">
+                  <p className="lifeline" onClick={this.handleFiftyFifty}>50:50
+                  <span className="m-1 badge badge-light">{fiftyFifty}</span></p>
+              </div>
+              <div className="col-2 special">
+                  <p className="lifeline" onClick={this.handleHints}>Hints
+                  <span className="m-1 badge badge-light">{hints}</span>
+                  </p> 
               </div>
             </div>
           </div>
         );
     }
 }
+
+// svg editing
+const SVGCircle = ({ radius }) => (
+  <svg className="countdown-svg">
+      <path
+          fill="none"
+          stroke="#333"
+          strokeWidth="4"
+          d={describeArc(50, 50, 48, 0, radius)}
+      />
+  </svg>
+);
+
+// helper function
+function polarToCartesian(centerX, centerY, radius, angleInDegrees) {
+  var angleInRadians = ((angleInDegrees - 90) * Math.PI) / 180.0;
+
+  return {
+      x: centerX + radius * Math.cos(angleInRadians),
+      y: centerY + radius * Math.sin(angleInRadians)
+  };
+}
+
+function describeArc(x, y, radius, startAngle, endAngle) {
+  var start = polarToCartesian(x, y, radius, endAngle);
+  var end = polarToCartesian(x, y, radius, startAngle);
+  var largeArcFlag = endAngle - startAngle <= 180 ? '0' : '1';
+  var d = [
+      'M',
+      start.x,
+      start.y,
+      'A',
+      radius,
+      radius,
+      0,
+      largeArcFlag,
+      0,
+      end.x,
+      end.y
+  ].join(' ');
+
+  return d;
+}
+
+
+function mapNumber(number, in_min, in_max, out_min, out_max) {
+  return (
+      ((number - in_min) * (out_max - out_min)) / (in_max - in_min) + out_min
+  );
+}
+
 
 export default Play

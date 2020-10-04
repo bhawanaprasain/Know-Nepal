@@ -26,7 +26,7 @@ const Home =()=>{
                     <div className="col-12">
                         <h1 className="mt-2">Know Nepal</h1>
                        <p>Take part in the quiz to know about Nepal</p>
-                       <a href="/playnow/instruction"><button className="btn btn-dark">Play Now</button></a>
+                    <a href="/playnow/instruction"><button className="btn btn-dark">Play Now</button></a>
                     </div>
                 </div>
             </div>

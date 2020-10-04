@@ -101,3 +101,81 @@
 */ .btnrounded {
     border-radius: 50% !important;
 }
+.countdown-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.countdown-item {
+    color: #111;
+    font-size: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    line-height: 30px;
+    margin: 10px;
+    padding-top: 10px;
+    position: relative;
+    width: 100px;
+    height: 100px;
+}
+
+.countdown-item span {
+    color: #333;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+
+.countdown-svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100px;
+    height: 100px;
+}
+
+.option {
+    background-color: #2f3640;
+    border-radius: 45%;
+    color: white;
+    height: 60px;
+    font-size: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.option:hover {
+    background-color: #3f4d61;
+}
+
+.lifeline {
+    background: #80b918;
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.lifeline:hover {
+    background-color: #aacc00;
+}
+
+.special {
+    padding-left: 50px !important;
+}
+
+@media(max-width: 500px) {
+    .option {
+        font-size: 18px;
+    }
+}
